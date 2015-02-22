@@ -24,5 +24,5 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
     // Library
-    'Craffft\CSSSelector\Selector'        => 'system/modules/css-selector/library/Craffft/CSSSelector/Selector.php',
+    'Craffft\CSSSelector\SelectorHelper'    => 'system/modules/css-selector/library/Craffft/CSSSelector/SelectorHelper.php',
 ));

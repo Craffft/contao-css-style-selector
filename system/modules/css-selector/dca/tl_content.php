@@ -26,7 +26,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['cssClassesSelector'] = array
     'eval'                    => array('chosen'=>true, 'multiple'=>true, 'tl_class'=>'w50 clr'),
     'save_callback' => array
     (
-        array('Craffft\CSSSelector\Selector', 'saveCallback')
+        array('Craffft\CSSSelector\SelectorHelper', 'saveCallback')
     ),
     'sql'                     => "blob NULL"
 );
