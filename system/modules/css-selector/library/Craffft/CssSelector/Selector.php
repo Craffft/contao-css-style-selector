@@ -14,7 +14,7 @@ namespace Craffft\CSSSelector;
 
 class Selector
 {
-    public function onSubmitCallback(\DataContainer $dc)
+    public function saveCallback($varValue, \DataContainer $dc)
     {
         if (!$dc->activeRecord) {
             return false;
