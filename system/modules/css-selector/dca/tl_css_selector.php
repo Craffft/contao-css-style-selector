@@ -33,7 +33,7 @@ $GLOBALS['TL_DCA']['tl_css_selector'] = array
     (
         'sorting' => array
         (
-            'mode'                    => 1,
+            'mode'                    => 11,
             'fields'                  => array('title'),
             'panelLayout'             => 'search,limit'
         ),
