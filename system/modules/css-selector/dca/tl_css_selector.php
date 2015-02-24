@@ -34,12 +34,12 @@ $GLOBALS['TL_DCA']['tl_css_selector'] = array
         'sorting' => array
         (
             'mode'                    => 11,
-            'fields'                  => array('title'),
+            'fields'                  => array('styleDesignation'),
             'panelLayout'             => 'search,limit'
         ),
         'label' => array
         (
-            'fields'                  => array('title', 'cssClasses'),
+            'fields'                  => array('styleDesignation', 'cssClasses'),
             'showColumns'             => true
         ),
         'global_operations' => array
@@ -84,7 +84,7 @@ $GLOBALS['TL_DCA']['tl_css_selector'] = array
     // Palettes
     'palettes' => array
     (
-        'default' => '{title_legend},title;{css_legend},cssClasses'
+        'default' => '{style_legend},styleDesignation;{css_legend},cssClasses'
     ),
     // Fields
     'fields'   => array
@@ -97,9 +97,9 @@ $GLOBALS['TL_DCA']['tl_css_selector'] = array
         (
             'sql'                     => "int(10) unsigned NOT NULL default '0'"
         ),
-        'title' => array
+        'styleDesignation' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_css_selector']['title'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_selector']['styleDesignation'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',

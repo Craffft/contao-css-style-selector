@@ -32,7 +32,7 @@ class SelectorHelper
         $arrClasses = array_diff($arrClasses, $this->getAllCssSelectorClasses());
 
         // Add all selected classes of cssSelector to the classes of cssID
-        $arrCssClassesSelectorIds = $this->convertSerializedCssSelectorToArray($varValue);
+        $arrCssClassesSelectorIds = $this->convertSerializedCssStyleSelectorToArray($varValue);
         $arrClasses = array_merge($arrClasses, $this->getCssSelectorClassesByIds($arrCssClassesSelectorIds));
 
         $arrClasses = array_unique($arrClasses);
@@ -74,15 +74,15 @@ class SelectorHelper
      * @param string $strValue
      * @return array
      */
-    protected function convertSerializedCssSelectorToArray($strValue)
+    protected function convertSerializedCssStyleSelectorToArray($strValue)
     {
-        $arrCssClassesSelectorIds = deserialize($strValue);
+        $arrIds = deserialize($strValue);
 
-        if (!is_array($arrCssClassesSelectorIds)) {
-            $arrCssClassesSelectorIds = array();
+        if (!is_array($arrIds)) {
+            $arrIds = array();
         }
 
-        return $arrCssClassesSelectorIds;
+        return $arrIds;
     }
 
     /**

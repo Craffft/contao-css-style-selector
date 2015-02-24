@@ -13,4 +13,4 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_content']['cssClassesSelector'] = array('Stil Auswahl', 'Hier können Sie vordefinierte CSS-Klassen auswählen.');
+$GLOBALS['TL_LANG']['tl_content']['cssStyleSelector'] = array('CSS-Stil Auswahl', 'Hier können Sie die CSS-Stile mit den vordefinierten CSS-Klassen auswählen.');
