@@ -36,7 +36,7 @@
  * have to be set. Take a look at the system/modules/core/config/config.php
  * file to see how back end modules are configured.
  */
-$GLOBALS['BE_MOD']['content']['cssSelector'] = array
+$GLOBALS['BE_MOD']['design']['cssSelector'] = array
 (
     'tables' => array('tl_css_selector'),
     'icon'   => 'system/modules/css-selector/assets/icon.png'
