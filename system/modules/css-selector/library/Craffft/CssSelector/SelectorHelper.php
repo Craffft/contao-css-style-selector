@@ -25,7 +25,8 @@ class SelectorHelper
             return false;
         }
 
-        $arrClasses = $this->getClassesFromCssIDAsArray(\Input::post('cssID'));
+        $arrCssID = $this->getCssID($dc->activeRecord->cssID);
+        $arrClasses = $this->getClassesFromCssIDAsArray($arrCssID);
 
         // Remove all known cssSelector classes from cssID classes
         $arrClasses = array_diff($arrClasses, $this->getAllCssSelectorClasses());
@@ -39,6 +40,25 @@ class SelectorHelper
         $this->saveClassesToCssID($arrClasses, $dc);
 
         return $varValue;
+    }
+
+    /**
+     * @param string $strFallback
+     * @return array
+     */
+    protected function getCssID($strFallback)
+    {
+        $arrCssID = \Input::post('cssID');
+
+        if ($arrCssID === null) {
+            $arrCssID = deserialize($strFallback);
+        }
+
+        if (!is_array($arrCssID)) {
+            $arrCssID = array();
+        }
+
+        return $arrCssID;
     }
 
     /**
