@@ -25,7 +25,7 @@ class SelectorHelper
             return false;
         }
 
-        $arrCssID = $this->getCssID($dc->activeRecord->cssID);
+        $arrCssID = $this->getCssIDValue($dc);
         $arrClasses = $this->getClassesFromCssIDAsArray($arrCssID);
 
         // Remove all known cssSelector classes from cssID classes
@@ -43,15 +43,24 @@ class SelectorHelper
     }
 
     /**
-     * @param string $strFallback
+     * @param integer $intId
+     * @return string
+     */
+    protected function getCssIDName($intId)
+    {
+        return 'cssID' . ((\Input::get('act') == 'editAll') ? '_' . $intId : '');
+    }
+
+    /**
+     * @param \DataContainer $dc
      * @return array
      */
-    protected function getCssID($strFallback)
+    protected function getCssIDValue(\DataContainer $dc)
     {
-        $arrCssID = \Input::post('cssID');
+        $arrCssID = \Input::post($this->getCssIDName($dc->id));
 
         if ($arrCssID === null) {
-            $arrCssID = deserialize($strFallback);
+            $arrCssID = deserialize($dc->activeRecord->cssID);
         }
 
         if (!is_array($arrCssID)) {
@@ -82,14 +91,15 @@ class SelectorHelper
      */
     protected function saveClassesToCssID(array $arrClasses, \DataContainer $dc)
     {
-        $arrPostedCssID = deserialize(\Input::post('cssID'));
+        $strCssIDName = $this->getCssIDName($dc->id);
+
+        $arrPostedCssID = \Input::post($strCssIDName);
         $arrPostedCssID[1] = implode(' ', $arrClasses);
         $arrPostedCssID[1] = str_replace('  ', ' ', $arrPostedCssID[1]);
         $arrPostedCssID[1] = trim($arrPostedCssID[1]);
 
-        \Input::setPost('cssID', serialize($arrPostedCssID));
         $dc->activeRecord->cssID = serialize($arrPostedCssID);
-
+        \Input::setPost($strCssIDName, $arrPostedCssID);
         ContentModel::updateCssIDById($dc->id, $arrPostedCssID);
     }
 
