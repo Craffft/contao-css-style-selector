@@ -5,14 +5,14 @@
  *
  * Copyright (c) 2015 Craffft
  *
- * @package CssSelector
+ * @package CssStyleSelector
  * @link    https://github.com/craffft/contao-css-selector
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
-namespace Craffft\CSSSelector;
+namespace Craffft\CssStyleSelector;
 
-class SelectorHelper
+class CssStyleSelectorHelper
 {
     /**
      * @param $varValue
@@ -28,12 +28,12 @@ class SelectorHelper
         $arrCssID = $this->getCssIDValue($dc);
         $arrClasses = $this->getClassesFromCssIDAsArray($arrCssID);
 
-        // Remove all known cssSelector classes from cssID classes
-        $arrClasses = array_diff($arrClasses, $this->getAllCssSelectorClasses());
+        // Remove all known cssStyleSelector classes from cssID classes
+        $arrClasses = array_diff($arrClasses, $this->getAllCssStyleSelectorClasses());
 
-        // Add all selected classes of cssSelector to the classes of cssID
+        // Add all selected classes of CssStyleSelector to the classes of cssID
         $arrCssClassesSelectorIds = $this->convertSerializedCssStyleSelectorToArray($varValue);
-        $arrClasses = array_merge($arrClasses, $this->getCssSelectorClassesByIds($arrCssClassesSelectorIds));
+        $arrClasses = array_merge($arrClasses, $this->getCssStyleSelectorClassesByIds($arrCssClassesSelectorIds));
 
         $arrClasses = array_unique($arrClasses);
 
@@ -120,13 +120,13 @@ class SelectorHelper
      * @param array $arrIds
      * @return array
      */
-    protected function getCssSelectorClassesByIds(array $arrIds)
+    protected function getCssStyleSelectorClassesByIds(array $arrIds)
     {
         if (empty($arrIds)) {
             return array();
         }
 
-        $arrClasses = CssSelectorModel::findCssClassesByIds($arrIds);
+        $arrClasses = CssStyleSelectorModel::findCssClassesByIds($arrIds);
 
         return $this->convertCombinedClassesToSingleClasses($arrClasses);
     }
@@ -134,9 +134,9 @@ class SelectorHelper
     /**
      * @return array
      */
-    protected function getAllCssSelectorClasses()
+    protected function getAllCssStyleSelectorClasses()
     {
-        $arrClasses = CssSelectorModel::findAllCssClasses();
+        $arrClasses = CssStyleSelectorModel::findAllCssClasses();
         $arrClasses = $this->convertCombinedClassesToSingleClasses($arrClasses);
 
         return $arrClasses;

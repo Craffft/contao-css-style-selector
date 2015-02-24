@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2015 Craffft
  *
- * @package CssSelector
+ * @package CssStyleSelector
  * @link    https://github.com/craffft/contao-css-selector
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
@@ -26,7 +26,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['cssStyleSelector'] = array
     'eval'                    => array('chosen'=>true, 'multiple'=>true, 'tl_class'=>'w50 clr'),
     'save_callback' => array
     (
-        array('Craffft\CSSSelector\SelectorHelper', 'saveCallback')
+        array('Craffft\CssStyleSelector\CssStyleSelectorHelper', 'saveCallback')
     ),
     'sql'                     => "blob NULL"
 );

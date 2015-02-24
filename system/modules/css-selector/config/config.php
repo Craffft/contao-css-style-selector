@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2015 Craffft
  *
- * @package CssSelector
+ * @package CssStyleSelector
  * @link    https://github.com/craffft/contao-css-selector
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
@@ -36,7 +36,7 @@
  * have to be set. Take a look at the system/modules/core/config/config.php
  * file to see how back end modules are configured.
  */
-$GLOBALS['BE_MOD']['design']['cssSelector'] = array
+$GLOBALS['BE_MOD']['design']['cssStyleSelector'] = array
 (
     'tables' => array('tl_css_style_selector'),
     'icon'   => 'system/modules/css-selector/assets/icon.png'

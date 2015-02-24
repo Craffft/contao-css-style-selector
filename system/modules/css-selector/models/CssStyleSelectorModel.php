@@ -5,14 +5,14 @@
  *
  * Copyright (c) 2015 Craffft
  *
- * @package CssSelector
+ * @package CssStyleSelector
  * @link    https://github.com/craffft/contao-css-selector
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
-namespace Craffft\CSSSelector;
+namespace Craffft\CssStyleSelector;
 
-class CssSelectorModel extends \Model
+class CssStyleSelectorModel extends \Model
 {
     /**
      * Name of the table
@@ -22,21 +22,21 @@ class CssSelectorModel extends \Model
 
     public static function findCssClassesByIds(array $arrIds)
     {
-        $t = self::strTable;
+        $t = self::$strTable;
         $objDatabase = \Database::getInstance();
 
-        $objCssSelector = $objDatabase->prepare("SELECT cssClasses FROM $t WHERE id IN(". implode(',', array_map('intval', array_unique($arrIds))) .")")->execute();
+        $objCssStyleSelector = $objDatabase->prepare("SELECT cssClasses FROM $t WHERE id IN(". implode(',', array_map('intval', array_unique($arrIds))) .")")->execute();
 
-        return $objCssSelector->fetchEach('cssClasses');
+        return $objCssStyleSelector->fetchEach('cssClasses');
     }
 
     public static function findAllCssClasses()
     {
-        $t = self::strTable;
+        $t = self::$strTable;
         $objDatabase = \Database::getInstance();
 
-        $objCssSelector = $objDatabase->prepare("SELECT cssClasses FROM $t")->execute();
+        $objCssStyleSelector = $objDatabase->prepare("SELECT cssClasses FROM $t")->execute();
 
-        return $objCssSelector->fetchEach('cssClasses');
+        return $objCssStyleSelector->fetchEach('cssClasses');
     }
 }

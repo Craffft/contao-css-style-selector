@@ -5,12 +5,12 @@
  *
  * Copyright (c) 2015 Craffft
  *
- * @package CssSelector
+ * @package CssStyleSelector
  * @link    https://github.com/craffft/contao-css-selector
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
-namespace Craffft\CSSSelector;
+namespace Craffft\CssStyleSelector;
 
 class ContentModel extends \Contao\ContentModel
 {
