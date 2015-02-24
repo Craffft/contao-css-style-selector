@@ -39,7 +39,7 @@
 $GLOBALS['BE_MOD']['content']['cssSelector'] = array
 (
     'tables' => array('tl_css_selector'),
-    'icon'   => 'system/modules/css-selector/assets/images/css-list.png'
+    'icon'   => 'system/modules/css-selector/assets/icon.png'
 );
 
 /**
