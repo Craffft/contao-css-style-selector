@@ -1,4 +1,4 @@
-css style selector
+CSS Style Selector
 ==================
 
 This Contao extension is a CSS style selector for content elements in Contao.
