@@ -11,9 +11,9 @@
  */
 
 /**
- * Table tl_css_selector
+ * Table tl_css_style_selector
  */
-$GLOBALS['TL_DCA']['tl_css_selector'] = array
+$GLOBALS['TL_DCA']['tl_css_style_selector'] = array
 (
     // Config
     'config'   => array
@@ -56,26 +56,26 @@ $GLOBALS['TL_DCA']['tl_css_selector'] = array
         (
             'edit' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_css_selector']['edit'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_css_style_selector']['edit'],
                 'href'                => 'act=edit',
                 'icon'                => 'edit.gif'
             ),
             'copy'   => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_css_selector']['copy'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_css_style_selector']['copy'],
                 'href'                => 'act=paste&amp;mode=copy',
                 'icon'                => 'copy.gif',
             ),
             'delete' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_css_selector']['delete'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_css_style_selector']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.gif',
                 'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
             ),
             'show' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_css_selector']['show'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_css_style_selector']['show'],
                 'href'                => 'act=show',
                 'icon'                => 'show.gif'
             )
@@ -99,7 +99,7 @@ $GLOBALS['TL_DCA']['tl_css_selector'] = array
         ),
         'styleDesignation' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_css_selector']['styleDesignation'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['styleDesignation'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
@@ -108,7 +108,7 @@ $GLOBALS['TL_DCA']['tl_css_selector'] = array
         ),
         'cssClasses' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_css_selector']['cssClasses'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['cssClasses'],
             'exclude'                 => true,
             'inputType'               => 'text',
             'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'rgxp'=>'alphanumeric', 'tl_class'=>'w50'),

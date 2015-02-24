@@ -18,22 +18,24 @@ class CssSelectorModel extends \Model
      * Name of the table
      * @var string
      */
-    protected static $strTable = 'tl_css_selector';
+    protected static $strTable = 'tl_css_style_selector';
 
     public static function findCssClassesByIds(array $arrIds)
     {
+        $t = self::strTable;
         $objDatabase = \Database::getInstance();
 
-        $objCssSelector = $objDatabase->prepare("SELECT cssClasses FROM tl_css_selector WHERE id IN(". implode(',', array_map('intval', array_unique($arrIds))) .")")->execute();
+        $objCssSelector = $objDatabase->prepare("SELECT cssClasses FROM $t WHERE id IN(". implode(',', array_map('intval', array_unique($arrIds))) .")")->execute();
 
         return $objCssSelector->fetchEach('cssClasses');
     }
 
     public static function findAllCssClasses()
     {
+        $t = self::strTable;
         $objDatabase = \Database::getInstance();
 
-        $objCssSelector = $objDatabase->prepare("SELECT cssClasses FROM tl_css_selector")->execute();
+        $objCssSelector = $objDatabase->prepare("SELECT cssClasses FROM $t")->execute();
 
         return $objCssSelector->fetchEach('cssClasses');
     }

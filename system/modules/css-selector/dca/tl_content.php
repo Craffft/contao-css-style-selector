@@ -21,7 +21,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['cssStyleSelector'] = array
     'label'                   => &$GLOBALS['TL_LANG']['tl_content']['cssStyleSelector'],
     'exclude'                 => true,
     'inputType'               => 'select',
-    'foreignKey'              => 'tl_css_selector.styleDesignation',
+    'foreignKey'              => 'tl_css_style_selector.styleDesignation',
     'search'                  => true,
     'eval'                    => array('chosen'=>true, 'multiple'=>true, 'tl_class'=>'w50 clr'),
     'save_callback' => array
