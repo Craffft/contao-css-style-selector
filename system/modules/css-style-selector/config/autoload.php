@@ -24,9 +24,9 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
     // Library
-    'Craffft\CssStyleSelector\CssStyleSelectorHelper'   => 'system/modules/css-selector/library/Craffft/CssStyleSelector/CssStyleSelectorHelper.php',
+    'Craffft\CssStyleSelector\CssStyleSelectorHelper'   => 'system/modules/css-style-selector/library/Craffft/CssStyleSelector/CssStyleSelectorHelper.php',
 
     // Models
-    'Craffft\CssStyleSelector\ContentModel'             => 'system/modules/css-selector/models/ContentModel.php',
-    'Craffft\CssStyleSelector\CssStyleSelectorModel'    => 'system/modules/css-selector/models/CssStyleSelectorModel.php',
+    'Craffft\CssStyleSelector\ContentModel'             => 'system/modules/css-style-selector/models/ContentModel.php',
+    'Craffft\CssStyleSelector\CssStyleSelectorModel'    => 'system/modules/css-style-selector/models/CssStyleSelectorModel.php',
 ));

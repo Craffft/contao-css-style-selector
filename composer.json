@@ -1,5 +1,5 @@
 {
-    "name": "craffft/contao-css-selector",
+    "name": "craffft/contao-css-style-selector",
     "description": "CSS selection of predefined classes.",
     "keywords": ["css", "selector", "list", "classes"],
     "type": "contao-module",
@@ -14,8 +14,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/Craffft/contao-css-selector/issues",
-        "source": "https://github.com/Craffft/contao-css-selector"
+        "issues": "https://github.com/Craffft/contao-css-style-selector/issues",
+        "source": "https://github.com/Craffft/contao-css-style-selector"
     },
     "require": {
         "php": ">=5.3.2",
@@ -26,12 +26,12 @@
         "classmap": ["system/"]
     },
     "replace": {
-        "contao-legacy/css-selector": "*"
+        "contao-legacy/css-style-selector": "*"
     },
     "extra": {
         "contao": {
             "sources": {
-                "system/modules/css-selector": "system/modules/css-selector"
+                "system/modules/css-style-selector": "system/modules/css-style-selector"
             }
         }
     }
