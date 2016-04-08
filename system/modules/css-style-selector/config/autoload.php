@@ -27,6 +27,5 @@ ClassLoader::addClasses(array
     'Craffft\CssStyleSelector\CssStyleSelectorHelper'   => 'system/modules/css-style-selector/library/Craffft/CssStyleSelector/CssStyleSelectorHelper.php',
 
     // Models
-    'Craffft\CssStyleSelector\ContentModel'             => 'system/modules/css-style-selector/models/ContentModel.php',
     'Craffft\CssStyleSelector\CssStyleSelectorModel'    => 'system/modules/css-style-selector/models/CssStyleSelectorModel.php',
 ));

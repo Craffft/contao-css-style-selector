@@ -100,7 +100,10 @@ class CssStyleSelectorHelper
 
         $dc->activeRecord->cssID = serialize($arrPostedCssID);
         \Input::setPost($strCssIDName, $arrPostedCssID);
-        ContentModel::updateCssIDById($dc->id, $arrPostedCssID);
+
+        $objDatabase = \Database::getInstance();
+        $objDatabase->prepare("UPDATE $dc->table SET cssID=? WHERE id=?")
+            ->execute(serialize($arrPostedCssID), $dc->id);
     }
 
     /**
