@@ -14,12 +14,29 @@ namespace Craffft\CssStyleSelector;
 
 class CssStyleSelectorModel extends \Model
 {
+    const TYPE_ARTICLE = 'article';
+    const TYPE_CONTENT = 'content';
+    const TYPE_MODEL = 'module';
+
     /**
      * Name of the table
      * @var string
      */
     protected static $strTable = 'tl_css_style_selector';
 
+    public static function getAvailableTypes()
+    {
+        return array(
+            self::TYPE_ARTICLE,
+            self::TYPE_CONTENT,
+            self::TYPE_MODEL
+        );
+    }
+
+    /**
+     * @param array $arrIds
+     * @return array
+     */
     public static function findCssClassesByIds(array $arrIds)
     {
         $t = self::$strTable;
@@ -30,13 +47,43 @@ class CssStyleSelectorModel extends \Model
         return $objCssStyleSelector->fetchEach('cssClasses');
     }
 
-    public static function findAllCssClasses()
+    /**
+     * @param $strType
+     * @return array
+     */
+    public static function findCssClassesByNotDisabledType($strType)
     {
+        if (!in_array($strType, self::getAvailableTypes())) {
+            return array();
+        }
+
         $t = self::$strTable;
         $objDatabase = \Database::getInstance();
 
-        $objCssStyleSelector = $objDatabase->prepare("SELECT cssClasses FROM $t")->execute();
+        $objCssStyleSelector = $objDatabase
+            ->prepare("SELECT cssClasses FROM $t WHERE disableIn" . ucfirst($strType) . "=?")
+            ->execute(0);
 
         return $objCssStyleSelector->fetchEach('cssClasses');
+    }
+
+    /**
+     * @param $strType
+     * @return array
+     */
+    public static function findStyleDesignationByNotDisabledType($strType)
+    {
+        if (!in_array($strType, self::getAvailableTypes())) {
+            return array();
+        }
+
+        $t = self::$strTable;
+        $objDatabase = \Database::getInstance();
+
+        $objCssStyleSelector = $objDatabase
+            ->prepare("SELECT id, styleDesignation FROM $t WHERE disableIn" . ucfirst($strType) . "=? ORDER BY styleDesignation ASC")
+            ->execute(0);
+
+        return $objCssStyleSelector->fetchEach('styleDesignation');
     }
 }

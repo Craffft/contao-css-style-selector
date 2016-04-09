@@ -11,19 +11,19 @@
  */
 
 // Palettes
-foreach ($GLOBALS['TL_DCA']['tl_content']['palettes'] as $k => $v) {
-    $GLOBALS['TL_DCA']['tl_content']['palettes'][$k] = str_replace(',cssID', ',cssStyleSelector,cssID', $v);
+foreach ($GLOBALS['TL_DCA']['tl_article']['palettes'] as $k => $v) {
+    $GLOBALS['TL_DCA']['tl_article']['palettes'][$k] = str_replace(',cssID', ',cssStyleSelector,cssID', $v);
 }
 
 // Fields
-$GLOBALS['TL_DCA']['tl_content']['fields']['cssStyleSelector'] = array
+$GLOBALS['TL_DCA']['tl_article']['fields']['cssStyleSelector'] = array
 (
     'label'                   => &$GLOBALS['TL_LANG']['MSC']['cssStyleSelector'],
     'exclude'                 => true,
     'inputType'               => 'select',
     'options_callback' => function () {
         return \Craffft\CssStyleSelector\CssStyleSelectorModel::findStyleDesignationByNotDisabledType(
-            \Craffft\CssStyleSelector\CssStyleSelectorModel::TYPE_CONTENT
+            \Craffft\CssStyleSelector\CssStyleSelectorModel::TYPE_ARTICLE
         );
     },
     'search'                  => true,

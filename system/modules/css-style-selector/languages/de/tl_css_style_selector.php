@@ -15,12 +15,23 @@
  */
 $GLOBALS['TL_LANG']['tl_css_style_selector']['style_legend'] = 'Stil';
 $GLOBALS['TL_LANG']['tl_css_style_selector']['css_legend'] = 'CSS';
+$GLOBALS['TL_LANG']['tl_css_style_selector']['permissions_legend'] = 'Berechtigungen';
 
 /**
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_css_style_selector']['styleDesignation'] = array('Stil Bezeichnung', 'Bitte geben Sie eine Stil Bezeichnung ein.');
 $GLOBALS['TL_LANG']['tl_css_style_selector']['cssClasses'] = array('CSS-Klassen', 'Bitte geben Sie eine oder mehrere CSS-Klassen mit jeweils einem Leerzeichen getrennt ein.');
+$GLOBALS['TL_LANG']['tl_css_style_selector']['disableInArticle'] = array('In Artikeln deaktivieren', 'Bitte wählen Sie dieses Feld aus, um den Stil in den Artikeln zu deaktivieren.');
+$GLOBALS['TL_LANG']['tl_css_style_selector']['disableInContent'] = array('In Content Elementen deaktivieren', 'Bitte wählen Sie dieses Feld aus, um den Stil in den Content Elementen zu deaktivieren.');
+$GLOBALS['TL_LANG']['tl_css_style_selector']['disableInModule'] = array('In Modulen deaktivieren', 'Bitte wählen Sie dieses Feld aus, um den Stil in den Modulen zu deaktivieren.');
+
+/**
+ * Labels
+ */
+$GLOBALS['TL_LANG']['tl_css_style_selector']['articleEnabled'] = array('Artikel', 'In Artikel aktiviert');
+$GLOBALS['TL_LANG']['tl_css_style_selector']['contentEnabled'] = array('CE', 'In Content Element aktiviert');
+$GLOBALS['TL_LANG']['tl_css_style_selector']['moduleEnabled'] = array('Modul', 'In Modul aktiviert');
 
 /**
  * Buttons

@@ -35,12 +35,19 @@ $GLOBALS['TL_DCA']['tl_css_style_selector'] = array
         (
             'mode'                    => 11,
             'fields'                  => array('styleDesignation'),
-            'panelLayout'             => 'search,limit'
+            'panelLayout'             => 'filter;search,limit'
         ),
         'label' => array
         (
-            'fields'                  => array('styleDesignation', 'cssClasses'),
-            'showColumns'             => true
+            'fields'                  => array('styleDesignation', 'cssClasses', 'articleEnabled', 'contentEnabled', 'moduleEnabled'),
+            'showColumns'             => true,
+            'label_callback' => function ($row, $label, DataContainer $dc, $args) {
+                $args[2] = $GLOBALS['TL_LANG']['MSC'][($row['disableInArticle'] ? 'no' : 'yes')];
+                $args[3] = $GLOBALS['TL_LANG']['MSC'][($row['disableInContent'] ? 'no' : 'yes')];
+                $args[4] = $GLOBALS['TL_LANG']['MSC'][($row['disableInModule'] ? 'no' : 'yes')];
+
+                return $args;
+            }
         ),
         'global_operations' => array
         (
@@ -84,7 +91,7 @@ $GLOBALS['TL_DCA']['tl_css_style_selector'] = array
     // Palettes
     'palettes' => array
     (
-        'default' => '{style_legend},styleDesignation;{css_legend},cssClasses'
+        'default' => '{style_legend},styleDesignation;{css_legend},cssClasses;{permissions_legend},disableInArticle,disableInContent,disableInModule'
     ),
     // Fields
     'fields'   => array
@@ -113,6 +120,42 @@ $GLOBALS['TL_DCA']['tl_css_style_selector'] = array
             'inputType'               => 'text',
             'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'rgxp'=>'alphanumeric', 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'disableInArticle' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['disableInArticle'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'sql'                     => "int(1) NOT NULL default '0'"
+        ),
+        'disableInContent' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['disableInContent'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'sql'                     => "int(1) NOT NULL default '0'"
+        ),
+        'disableInModule' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['disableInModule'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'sql'                     => "int(1) NOT NULL default '0'"
+        ),
+        'articleEnabled' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['articleEnabled'],
+        ),
+        'contentEnabled' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['contentEnabled'],
+        ),
+        'moduleEnabled' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['moduleEnabled'],
         )
     )
 );

@@ -13,4 +13,4 @@
 /**
  * Miscellaneous
  */
-$GLOBALS['TL_LANG']['MSC'][''] = '';
+$GLOBALS['TL_LANG']['MSC']['cssStyleSelector'] = array('CSS-Stil Auswahl', 'Hier können Sie die CSS-Stile mit den vordefinierten CSS-Klassen auswählen.');

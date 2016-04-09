@@ -29,7 +29,7 @@ class CssStyleSelectorHelper
         $arrClasses = $this->getClassesFromCssIDAsArray($arrCssID);
 
         // Remove all known cssStyleSelector classes from cssID classes
-        $arrClasses = array_diff($arrClasses, $this->getAllCssStyleSelectorClasses());
+        $arrClasses = array_diff($arrClasses, $this->getAllCssStyleSelectorClassesByTable($dc->table));
 
         // Add all selected classes of CssStyleSelector to the classes of cssID
         $arrCssClassesSelectorIds = $this->convertSerializedCssStyleSelectorToArray($varValue);
@@ -135,11 +135,18 @@ class CssStyleSelectorHelper
     }
 
     /**
+     * @param string $strTable
      * @return array
      */
-    protected function getAllCssStyleSelectorClasses()
+    protected function getAllCssStyleSelectorClassesByTable($strTable)
     {
-        $arrClasses = CssStyleSelectorModel::findAllCssClasses();
+        if (empty($strTable)) {
+            return array();
+        }
+
+        $strType = strtolower(substr($strTable, 3));
+
+        $arrClasses = CssStyleSelectorModel::findCssClassesByNotDisabledType($strType);
         $arrClasses = $this->convertCombinedClassesToSingleClasses($arrClasses);
 
         return $arrClasses;
