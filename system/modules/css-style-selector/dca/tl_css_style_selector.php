@@ -39,12 +39,15 @@ $GLOBALS['TL_DCA']['tl_css_style_selector'] = array
         ),
         'label' => array
         (
-            'fields'                  => array('styleDesignation', 'cssClasses', 'articleEnabled', 'contentEnabled', 'moduleEnabled'),
+            'fields'                  => array('styleDesignation', 'cssClasses', 'articleEnabled', 'contentEnabled', 'layoutEnabled', 'moduleEnabled', 'newsEnabled', 'pageEnabled'),
             'showColumns'             => true,
             'label_callback' => function ($row, $label, DataContainer $dc, $args) {
                 $args[2] = $GLOBALS['TL_LANG']['MSC'][($row['disableInArticle'] ? 'no' : 'yes')];
                 $args[3] = $GLOBALS['TL_LANG']['MSC'][($row['disableInContent'] ? 'no' : 'yes')];
-                $args[4] = $GLOBALS['TL_LANG']['MSC'][($row['disableInModule'] ? 'no' : 'yes')];
+                $args[4] = $GLOBALS['TL_LANG']['MSC'][($row['disableInLayout'] ? 'no' : 'yes')];
+                $args[5] = $GLOBALS['TL_LANG']['MSC'][($row['disableInModule'] ? 'no' : 'yes')];
+                $args[6] = $GLOBALS['TL_LANG']['MSC'][($row['disableInNews'] ? 'no' : 'yes')];
+                $args[7] = $GLOBALS['TL_LANG']['MSC'][($row['disableInPage'] ? 'no' : 'yes')];
 
                 return $args;
             }
@@ -91,7 +94,7 @@ $GLOBALS['TL_DCA']['tl_css_style_selector'] = array
     // Palettes
     'palettes' => array
     (
-        'default' => '{style_legend},styleDesignation;{css_legend},cssClasses;{permissions_legend},disableInArticle,disableInContent,disableInModule'
+        'default' => '{style_legend},styleDesignation;{css_legend},cssClasses;{permissions_legend},disableInArticle,disableInContent,disableInLayout,disableInModule,disableInNews,disableInPage'
     ),
     // Fields
     'fields'   => array
@@ -137,9 +140,33 @@ $GLOBALS['TL_DCA']['tl_css_style_selector'] = array
             'inputType'               => 'checkbox',
             'sql'                     => "int(1) NOT NULL default '0'"
         ),
+        'disableInLayout' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['disableInLayout'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'sql'                     => "int(1) NOT NULL default '0'"
+        ),
         'disableInModule' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['disableInModule'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'sql'                     => "int(1) NOT NULL default '0'"
+        ),
+        'disableInNews' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['disableInNews'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'sql'                     => "int(1) NOT NULL default '0'"
+        ),
+        'disableInPage' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['disableInPage'],
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',
@@ -153,9 +180,21 @@ $GLOBALS['TL_DCA']['tl_css_style_selector'] = array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['contentEnabled'],
         ),
+        'layoutEnabled' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['layoutEnabled'],
+        ),
         'moduleEnabled' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['moduleEnabled'],
+        ),
+        'newsEnabled' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['newsEnabled'],
+        ),
+        'pageEnabled' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_css_style_selector']['pageEnabled'],
         )
     )
 );

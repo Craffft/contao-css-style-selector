@@ -10,28 +10,28 @@
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
-if (isset($GLOBALS['TL_DCA']['tl_article'])) {
+if (isset($GLOBALS['TL_DCA']['tl_news'])) {
     // Palettes
-    foreach ($GLOBALS['TL_DCA']['tl_article']['palettes'] as $k => $v) {
-        $GLOBALS['TL_DCA']['tl_article']['palettes'][$k] = str_replace(',cssID', ',cssStyleSelector,cssID', $v);
+    foreach ($GLOBALS['TL_DCA']['tl_news']['palettes'] as $k => $v) {
+        $GLOBALS['TL_DCA']['tl_news']['palettes'][$k] = str_replace(',cssClass', ',cssStyleSelector,cssClass', $v);
     }
 
     // Fields
-    $GLOBALS['TL_DCA']['tl_article']['fields']['cssStyleSelector'] = array
+    $GLOBALS['TL_DCA']['tl_news']['fields']['cssStyleSelector'] = array
     (
         'label'            => &$GLOBALS['TL_LANG']['MSC']['cssStyleSelector'],
         'exclude'          => true,
         'inputType'        => 'select',
         'options_callback' => function () {
             return \Craffft\CssStyleSelector\CssStyleSelectorModel::findStyleDesignationByNotDisabledType(
-                \Craffft\CssStyleSelector\CssStyleSelectorModel::TYPE_ARTICLE
+                \Craffft\CssStyleSelector\CssStyleSelectorModel::TYPE_NEWS
             );
         },
         'search'           => true,
         'eval'             => array('chosen' => true, 'multiple' => true, 'tl_class' => 'clr'),
         'save_callback'    => array
         (
-            array('Craffft\CssStyleSelector\CssStyleSelectorHelper', 'saveCssIdCallback')
+            array('Craffft\CssStyleSelector\CssStyleSelectorHelper', 'saveCssClassCallback')
         ),
         'sql'              => "blob NULL"
     );

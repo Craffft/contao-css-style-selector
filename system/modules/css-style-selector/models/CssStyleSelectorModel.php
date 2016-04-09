@@ -16,7 +16,10 @@ class CssStyleSelectorModel extends \Model
 {
     const TYPE_ARTICLE = 'article';
     const TYPE_CONTENT = 'content';
+    const TYPE_LAYOUT = 'layout';
+    const TYPE_NEWS = 'news';
     const TYPE_MODEL = 'module';
+    const TYPE_PAGE = 'page';
 
     /**
      * Name of the table
@@ -29,7 +32,10 @@ class CssStyleSelectorModel extends \Model
         return array(
             self::TYPE_ARTICLE,
             self::TYPE_CONTENT,
-            self::TYPE_MODEL
+            self::TYPE_LAYOUT,
+            self::TYPE_NEWS,
+            self::TYPE_MODEL,
+            self::TYPE_PAGE
         );
     }
 

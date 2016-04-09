@@ -19,7 +19,7 @@ class CssStyleSelectorHelper
      * @param \DataContainer $dc
      * @return mixed
      */
-    public function saveCallback($varValue, \DataContainer $dc)
+    public function saveCssIdCallback($varValue, \DataContainer $dc)
     {
         if (!$dc->activeRecord) {
             return false;
@@ -38,6 +38,34 @@ class CssStyleSelectorHelper
         $arrClasses = array_unique($arrClasses);
 
         $this->saveClassesToCssID($arrClasses, $dc);
+
+        return $varValue;
+    }
+
+    /**
+     * @param $varValue
+     * @param \DataContainer $dc
+     * @return mixed
+     */
+    public function saveCssClassCallback($varValue, \DataContainer $dc)
+    {
+        if (!$dc->activeRecord) {
+            return false;
+        }
+
+        $strCssClasses = $this->getCssClassValue($dc);
+        $arrClasses = $this->convertClassesStringToArray($strCssClasses);
+
+        // Remove all known cssStyleSelector classes from cssID classes
+        $arrClasses = array_diff($arrClasses, $this->getAllCssStyleSelectorClassesByTable($dc->table));
+
+        // Add all selected classes of CssStyleSelector to the classes of cssID
+        $arrCssClassesSelectorIds = $this->convertSerializedCssStyleSelectorToArray($varValue);
+        $arrClasses = array_merge($arrClasses, $this->getCssStyleSelectorClassesByIds($arrCssClassesSelectorIds));
+
+        $arrClasses = array_unique($arrClasses);
+
+        $this->saveClassesToCssClass($arrClasses, $dc);
 
         return $varValue;
     }
@@ -68,6 +96,34 @@ class CssStyleSelectorHelper
         }
 
         return $arrCssID;
+    }
+
+    /**
+     * @param integer $intId
+     * @return string
+     */
+    protected function getCssClassName($intId)
+    {
+        return 'cssClass' . ((\Input::get('act') == 'editAll') ? '_' . $intId : '');
+    }
+
+    /**
+     * @param \DataContainer $dc
+     * @return array
+     */
+    protected function getCssClassValue(\DataContainer $dc)
+    {
+        $strCssClass = \Input::post($this->getCssClassName($dc->id));
+
+        if ($strCssClass === null) {
+            $strCssClass = $dc->activeRecord->cssClass;
+        }
+
+        if (!is_string($strCssClass)) {
+            $strCssClass = '';
+        }
+
+        return $strCssClass;
     }
 
     /**
@@ -104,6 +160,26 @@ class CssStyleSelectorHelper
         $objDatabase = \Database::getInstance();
         $objDatabase->prepare("UPDATE $dc->table SET cssID=? WHERE id=?")
             ->execute(serialize($arrPostedCssID), $dc->id);
+    }
+
+    /**
+     * @param array $arrClasses
+     * @param \DataContainer $dc
+     */
+    protected function saveClassesToCssClass(array $arrClasses, \DataContainer $dc)
+    {
+        $strCssClassName = $this->getCssClassName($dc->id);
+
+        $strClasses = implode(' ', $arrClasses);
+        $strClasses = str_replace('  ', ' ', $strClasses);
+        $strClasses = trim($strClasses);
+
+        $dc->activeRecord->cssClass = $strClasses;
+        \Input::setPost($strCssClassName, $strClasses);
+
+        $objDatabase = \Database::getInstance();
+        $objDatabase->prepare("UPDATE $dc->table SET cssClass=? WHERE id=?")
+            ->execute($strClasses, $dc->id);
     }
 
     /**
